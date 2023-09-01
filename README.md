@@ -6,3 +6,7 @@ what do you need to started this bot:
 1.Node.js
 
 2.you must write that command in terminal: 'npm install mineflayer'
+
+
+
+I quit the project IN 01.09.2023 SORRY
