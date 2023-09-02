@@ -1,23 +1,34 @@
 const mineflayer = require('mineflayer')
+const { pathfinder, Movements, goals } = require('mineflayer-pathfinder')
+const GoalFollow = goals.GoalFollow
+const GoalBlock = goals.GoalBlock
 
 const bot = mineflayer.createBot({
-  host: 'bravere0129.aternos.me',
-  port: '33415',
+  host: 'bravere0129.aternos.me', /* нужно указать свой ip */
+  port: '33415', /* а так же порт */
   username: 'Annihilator'
 })
 
-/* -------------------------------------------------------------------------- */
-/*                        бот будет смотреть на игрока                        */
-/* -------------------------------------------------------------------------- */
 
-function lookAtNearestPlayer () {
-  const playerFilter = (entity) => entity.type === 'player'
-  const playerEntity = bot.nearestEntity(playerFilter)
+bot.loadPlugin(pathfinder)
 
-  if (!playerEntity) return
+function followPlayer() {
+    const playerCI = bot.players['Bravere0129']
 
-  const pos = playerEntity.position.offset(0, playerEntity.height, 0)
-  bot.lookAt(pos)
+    if (!playerCI || !playerCI.entity) {
+        bot.chat("I can't see CI!")
+        return
+    }
+
+    const mcData = require('minecraft-data')(bot.version)
+    const movements = new Movements(bot, mcData)
+    movements.scafoldingBlocks = []
+
+    bot.pathfinder.setMovements(movements)
+
+    const goal = new GoalFollow(playerCI.entity, 1)
+    bot.pathfinder.setGoal(goal, true)
 }
 
-bot.on('physicTick',lookAtNearestPlayer)
+bot.once('physicTick', followPlayer) 
+
