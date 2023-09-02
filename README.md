@@ -9,4 +9,4 @@ what do you need to started this bot:
 
 
 
-I quit the project IN 01.09.2023 SORRY
+Not over the project
