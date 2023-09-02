@@ -9,4 +9,4 @@ what do you need to started this bot:
 
 
 
-Not over the project
+the project not finished just wait
