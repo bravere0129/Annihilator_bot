@@ -9,6 +9,8 @@
   "author": "Bravere0129 (Egor)",
   "license": "ISC",
   "dependencies": {
-    "mineflayer": "^4.13.0"
+    "minecraft-data": "^3.44.0",
+    "mineflayer": "^4.13.0",
+    "mineflayer-pathfinder": "^2.4.4"
   }
 }
